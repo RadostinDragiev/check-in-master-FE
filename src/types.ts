@@ -18,7 +18,7 @@ export interface Options{
 }
 
 export interface Rooms {
-    room: Room[]
+    list: Room[]
 }
 
 export interface Room {

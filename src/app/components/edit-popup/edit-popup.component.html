@@ -1,0 +1,50 @@
+<!-- <p-dialog [header]="header" [(visible)]="display" [modal]="true" [closable]="false"> -->
+    
+    <!-- Number -->
+    <!-- <div class="row gap-05">
+        <span class="price-label">Number:</span>
+        <span type="text" [(ngModel)]="room.number"></span>
+    </div> -->
+
+    <!-- Price -->
+    <!-- <div class="row gap-05">
+        <span class="price-label">Price:</span>
+        <span type="text" [(ngModel)]="room.pricePerNight"></span>
+    </div> -->
+
+    <!-- <p-footer>
+        <button type="button" pButton icon="pi pi-check" (click)="onConfirm()" label="Confirm"></button>
+        <button type="button" pButton icon="pi pi-check" (click)="onConfirm()" label="Cancel"></button>
+    </p-footer>
+</p-dialog> -->
+
+<h2 mat-dialog-title>{{header}}</h2>
+
+<div mat-dialog-content>
+  <!-- Number -->
+  <!-- <div class="row gap-05">
+    <span class="price-label">Number:</span>
+    <input type="text" [(ngModel)]="room.number">
+  </div> -->
+  <mat-form-field>
+    <mat-label>Room number</mat-label>
+    <input matInput>
+  </mat-form-field>
+
+  <!-- Price -->
+  <!-- <div class="row gap-05">
+    <span class="price-label">Price:</span>
+    <input type="text" [(ngModel)]="room.pricePerNight">
+  </div> -->
+  <mat-form-field floatLabel="always">
+    <mat-label>Price</mat-label>
+    <input matInput type="number" class="example-right-align" placeholder="0" />
+    <span matTextPrefix>$&nbsp;</span>
+    <span matTextSuffix>.00</span>
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" (click)="onConfirm()">Confirm</button>
+  <button mat-raised-button (click)="onCancel()">Cancel</button>
+</div>

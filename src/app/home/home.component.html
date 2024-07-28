@@ -1,2 +1,8 @@
-<mat-slide-toggle>Toggle me!</mat-slide-toggle>
-
+<div class="column">
+    <div class="row wrap gap-1 space-between">
+        <div *ngFor="let room of rooms">
+            <app-room [room]="room"></app-room>
+            <button mat-raised-button color="primary" (click)="openDialog()">Add Room</button>
+          </div>
+    </div>
+</div>

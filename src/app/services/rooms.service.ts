@@ -12,4 +12,16 @@ export class RoomsService {
   getRooms = (url: string, params: any): Observable<any> => {
     return this.apiService.get(url, params);
   }
+
+  addRoom = (url: string, body: any, params: any): Observable<any> => {
+    return this.apiService.post(url, body, params);
+  }
+
+  editRoom = (url: string, body: any, params: any): Observable<any> => {
+    return this.apiService.put(url, body, params);
+  }
+
+  deleteRoom = (url: string, params: any): Observable<any> => {
+    return this.apiService.delete(url, params);
+  }
 }
