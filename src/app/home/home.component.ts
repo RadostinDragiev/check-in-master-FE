@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RoomsService } from '../services/rooms.service';
-import { Room, Rooms } from '../../types';
+import { Room } from '../../types';
 import { RoomComponent } from '../components/room/room.component';
 import { CommonModule } from '@angular/common';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -11,13 +11,26 @@ import { EditPopupComponent } from '../components/edit-popup/edit-popup.componen
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RoomComponent, MatButtonModule],
+  imports: [CommonModule, RoomComponent, EditPopupComponent, MatButtonModule, MatDialogModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
 
   rooms: Room[] = []
+
+  displayEditPopup: boolean = false;
+  displayAddPopup: boolean = false;
+
+  selectedRoom: Room = {
+    uuid: '',
+    number: 0,
+    roomType: '',
+    pricePerNight: 0,
+    capacity: 0,
+    status: 'string',
+    images: []
+  }
 
   constructor(private roomService: RoomsService, public dialog: MatDialog) {}
 
@@ -80,16 +93,11 @@ export class HomeComponent {
 
   display = false;
 
-  openDialog(): void {
+  openDialog(room: Room): void {
     const dialogRef = this.dialog.open(EditPopupComponent, {
       width: '300px',
-      data: {
-        header: 'Add Room',
-        room: {
-          number: null,
-          pricePerNight: null
-        }
-      }
+      data: room
+
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -101,5 +109,24 @@ export class HomeComponent {
         console.log('Dialog canceled');
       }
     });
+  }
+
+  onConfirmEdit(room: Room) {
+    this.editRoom(room, this.selectedRoom.number);
+    this.displayEditPopup = false;
+  }
+
+  onConfirmAdd(room: Room) {
+    this.createRoom(room);
+    this.displayAddPopup = false;
+  }
+
+  toggleEditPopup(room: Room) {
+    this.selectedRoom = room;
+    this.displayEditPopup = true;
+  }
+
+  toggleAddPopup() {
+    this.displayAddPopup = true;
   }
 }

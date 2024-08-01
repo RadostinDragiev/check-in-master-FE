@@ -2,7 +2,10 @@
     <div class="row wrap gap-1 space-between">
         <div *ngFor="let room of rooms">
             <app-room [room]="room"></app-room>
-            <button mat-raised-button color="primary" (click)="openDialog()">Add Room</button>
+            <button mat-raised-button color="primary" (click)="openDialog(room)">Edit room</button>
           </div>
     </div>
 </div>
+
+<!-- <app-edit-popup [room]="selectedRoom" [display]="displayEditPopup" (confirm)="onConfirmEdit($event)" header="Edit Room"></app-edit-popup>
+<app-edit-popup [display]="displayAddPopup" (confirm)="onConfirmAdd($event)" header="Edit Room"></app-edit-popup> -->

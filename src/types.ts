@@ -23,9 +23,16 @@ export interface Rooms {
 
 export interface Room {
     uuid: string,
-    number: number
+    number: number,
     roomType: string,
     pricePerNight: number,
     capacity: number,
-    status: string
+    status: string,
+    images: RoomImage[]
+}
+
+export interface RoomImage {
+    uuid: string,
+    publicId: string,
+    url: string
 }

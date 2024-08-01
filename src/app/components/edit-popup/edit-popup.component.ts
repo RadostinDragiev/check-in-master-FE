@@ -1,9 +1,9 @@
 import { DialogModule } from '@angular/cdk/dialog';
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { Room } from '../../../types';
 import { FormsModule } from '@angular/forms';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormField, MatFormFieldControl, MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -17,19 +17,20 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class EditPopupComponent {
 
-  constructor(public dialogRef: MatDialogRef<EditPopupComponent>) {}
+  constructor(public dialogRef: MatDialogRef<EditPopupComponent>, @Inject(MAT_DIALOG_DATA) public room: Room) {}
 
   @Input() display: boolean = false;
   @Input() header!: string;
 
-  @Input() room: Room = {
-    uuid: '',
-    number: 0,
-    roomType: '',
-    pricePerNight: 0,
-    capacity: 0,
-    status: ''
-  };
+  // @Input() room: Room = {
+  //   uuid: '',
+  //   number: 0,
+  //   roomType: '',
+  //   pricePerNight: 0,
+  //   capacity: 0,
+  //   status: '',
+  //   images: []
+  // };
 
   @Output() confirm = new EventEmitter<Room>();
 
